@@ -10,6 +10,8 @@
   
   <!-- явное указание кодировки UTF-8 для сборки -->
   <properties>
+  <maven.compiler.source>8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -22,20 +24,34 @@
             <plugins>
                 <plugin>
                 <!-- плагин для компиляции исходников проекта. 1.8 - указывает на версию Java -->
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <groupId>org.apache.tomcat.maven</groupId>
+		    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
                     <configuration>
+			<username>maks</username>
+			<password>12345678</password>
+			<url>http://10.61.2.196:8080/manager/text</url>
+			<server>TomcatServer</server>
                         <source>1.8</source>
                         <target>1.8</target>
                         <encoding>UTF-8</encoding>
+
                     </configuration>
                 </plugin>
                                     
 <plugin>
-    <artifactId>maven-war-plugin</artifactId>
-    <version>3.3.0</version>
+    <artifactId>tomcat7-maven-plugin</artifactId>
+    <version>2.2.0</version>
     <configuration>
         <goal>war:inplace</goal>
+	<username>maks</username>
+	<password>12345678</password>
+	<url>http://10.61.2.196:8080/manager/text</url>
+	<server>TomcatServer</server>
+        <source>1.8</source>
+        <target>1.8</target>
+        <encoding>UTF-8</encoding>
+
         <!-- указание директории сохранения war файла, укажем по умолчанию -->
         <outputDirectory>target</outputDirectory>
     </configuration>
